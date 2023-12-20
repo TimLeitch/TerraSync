@@ -1,0 +1,37 @@
+# File: .github/workflows/ci.yml
+
+name: Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: Install Node.js dependencies
+        run: npm install
+        working-directory: ./frontend
+
+      - name: Run lint checks
+        run: npm run lint
+        working-directory: ./frontend
+
+      - name: Check formatting with Prettier
+        run: npm run check
+        working-directory: ./frontend
+
+      - name: Run unit tests with Vitest
+        run: npm run test:unit
+        working-directory: ./frontend
+
+      - name: Run integration tests with Playwright
+        run: npm run test:integration
+        working-directory: ./frontend
