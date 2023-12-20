@@ -20,6 +20,10 @@ jobs:
         run: npm install
         working-directory: ./frontend
 
+      - name: Run Prettier
+        run: npx prettier --config ./.prettierrc --write .
+        working-directory: ./frontend
+
       - name: Run lint checks
         run: |
           npm run format    
