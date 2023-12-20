@@ -1,5 +1,5 @@
 <script>
-	import Header from './Header.svelte';
+	import Header from '$lib/components/Header.svelte';
 	import './styles.css';
 </script>
 
@@ -11,7 +11,7 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>If there are any issues or concerns, please contact Tim @ <a href="mailto:timothy.leitch@goterrafirma.com">timothy.leitch@goterrafirma.com</a>.</p>
 	</footer>
 </div>
 

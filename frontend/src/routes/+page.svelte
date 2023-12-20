@@ -1,7 +1,8 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import Login from '$lib/components/Login.svelte';
+
+	let isLoggedIn = false;
+
 </script>
 
 <svelte:head>
@@ -10,22 +11,16 @@
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
+	<main>
+		{#if !isLoggedIn}
+			<Login />
+		{:else}
+			<h1>Welcome to the TerraSync!</h1>
+			
+			<!-- Placeholder for user-specific content -->
+		{/if}
+	</main>
+	
 </section>
 
 <style>
