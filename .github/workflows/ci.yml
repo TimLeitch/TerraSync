@@ -42,6 +42,10 @@ jobs:
         run: npm run test:unit
         working-directory: ./frontend
 
+      - name: Update Playwright browsers
+        run: npx playwright install
+        working-directory: ./frontend
+
       - name: Run integration tests with Playwright
         run: npm run test:integration
         working-directory: ./frontend
