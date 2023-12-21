@@ -6,16 +6,13 @@ const handleLogin = () => {
     //TODO: Add login logic
 }
 
-const handleRegister = () => {
-    //TODO: Add register logic
-}
+// const handleRegister = () => {
+//     //TODO: Add register logic
+// }
 
-const handleMouseOver = () => {
-    
-}
 </script>
 
-<div class="login-container" on:mouseover={handleMouseOver}>
+<div class="login-container">
     <h2>Login</h2>
     <form on:submit|preventDefault={handleLogin}>
         <div class="input-container">
