@@ -1,7 +1,25 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import logo from '$lib/images/TF Red Black logo.png';
-	import github from '$lib/images/github.svg';
+	import { isAuthenticated } from '$lib/components/auth/store';
+    import LoginModal from '$lib/components/auth/LoginModal.svelte';
+
+    let showLoginModal = false;
+
+    function openLoginModal() {
+        showLoginModal = true;
+    }
+
+    function closeLoginModal() {
+        showLoginModal = false;
+    }
+	function handleLogout() {
+        // Clear any stored tokens
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        // Update authentication state
+        isAuthenticated.set(false);
+    }
 </script>
 
 <header>
@@ -31,11 +49,17 @@
 		</svg>
 	</nav>
 
-	<div class="corner">
-		<a href="https://github.com/TimLeitch">
-			<img src={github} alt="GitHub" />
-		</a>
-	</div>
+	
+	{#if $isAuthenticated}
+	<button>Username (Placeholder)</button> <!-- Link to user profile -->
+	<button on:click={handleLogout}>Logout</button>
+	{:else}
+		<button on:click={openLoginModal}>Login</button>
+	{/if}
+
+	{#if showLoginModal}
+		<LoginModal on:close={closeLoginModal} />
+	{/if}
 </header>
 
 <style>

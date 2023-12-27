@@ -1,7 +1,17 @@
 <script>
-	import Login from '$lib/components/auth/Login.svelte';
+	import { isAuthenticated, userGroups } from '$lib/components/auth/store.js';
 
-	let isLoggedIn = false;
+	let isLoggedIn;
+	let groups;
+
+	// Subscribe to the store values
+	isAuthenticated.subscribe(value => {
+		isLoggedIn = value;
+	});
+
+	userGroups.subscribe(value => {
+		groups = value;
+	});
 </script>
 
 <svelte:head>
@@ -12,7 +22,7 @@
 <section>
 	<main>
 		{#if !isLoggedIn}
-			<Login />
+			<h1>Please log in</h1>	
 		{:else}
 			<h1>Welcome to the TerraSync!</h1>
 
