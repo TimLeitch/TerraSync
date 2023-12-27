@@ -27,8 +27,10 @@
 			// Redirect to another page or update the state
 			// window.location.href = '/dashboard'; // Example redirection
 		} catch (error) {
-			message = error.message;
-			console.error('Login failed:', error);
+			if (error instanceof Error) {
+				message = error.message;
+				console.error('Login failed:', error);
+			}
 		}
 	}
 	function handleLogout() {
