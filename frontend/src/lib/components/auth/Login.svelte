@@ -1,5 +1,5 @@
-<script>
-	import { isAuthenticated } from '$lib/components/auth/store';
+<script lang="ts">
+    import { isAuthenticated, userGroups } from './store.js';
 	let username = '';
 	let password = '';
 	let message = '';
@@ -14,14 +14,20 @@
 				body: `username=${username}&password=${password}`
 			});
 			if (response.ok) {
-				isAuthenticated.set(true); // Update auth state
-			}
+        const data = await response.json();
+        const decodedToken = parseJwt(data.access_token);
+        userGroups.set(decodedToken.groups || []); // Update groups store
+        isAuthenticated.set(true);
+        // ... other login success logic
+    }
 
 			const data = await response.json();
 			console.log('Login successful:', data);
 
-			// Store the token in localStorage
-			localStorage.setItem('token', data.access_token);
+			// Store the tokens in localStorage
+            localStorage.setItem('accessToken', data.access_token);
+            localStorage.setItem('refreshToken', data.refresh_token);
+
 
 			console.log('Token stored in localStorage:', localStorage.getItem('token'));
 			// Redirect to another page or update the state
@@ -33,6 +39,19 @@
 			}
 		}
 	}
+    function parseJwt(token: string) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    } catch (e) {
+        return null;
+    }
+}
 	function handleLogout() {
 		localStorage.removeItem('token');
 		isAuthenticated.set(false);

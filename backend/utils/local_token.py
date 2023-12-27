@@ -7,10 +7,20 @@ from pydantic import BaseModel
 SECRET_KEY = "ImNotVeryGoodAtMakingSuperSecretKeys,ButI'amOkayAtWrittingShittyCodeSometimes"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30  # or another duration
+REFRESH_TOKEN_EXPIRE_MINUTES = 60
 
 
 class TokenData(BaseModel):
     username: Optional[str] = None
+
+
+def create_refresh_token(data: dict):
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + \
+        timedelta(minutes=REFRESH_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
 
 
 def create_access_token(data: dict, groups: str = None):
