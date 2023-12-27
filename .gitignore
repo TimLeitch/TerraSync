@@ -1,1 +1,3 @@
 backend/venv
+password_hash_magic.py
+test_users.csv

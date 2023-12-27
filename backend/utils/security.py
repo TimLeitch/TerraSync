@@ -9,6 +9,3 @@ def hash_password(password: str):
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
-
-
-print(hash_password('Passw0rd1'))
