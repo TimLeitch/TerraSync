@@ -1,5 +1,5 @@
 <script>
-	import Login from '$lib/components/Login.svelte';
+	import Login from '$lib/components/auth/Login.svelte';
 
 	let isLoggedIn = false;
 
