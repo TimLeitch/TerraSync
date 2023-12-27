@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from models.user import UserCreate, UserBase
 from utils.security import hash_password
-from utils.db import get_db, get_admin_db
+from utils.db import get_db
 router = APIRouter()
 
 

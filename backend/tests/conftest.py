@@ -2,7 +2,8 @@ import pytest
 import asyncio
 from fastapi.testclient import TestClient
 from motor.motor_asyncio import AsyncIOMotorClient
-from main import app, get_db
+from main import app
+from utils.db import get_db
 from utils.security import hash_password
 
 client = TestClient(app)
