@@ -2,7 +2,6 @@
 	import Login from '$lib/components/auth/Login.svelte';
 
 	let isLoggedIn = false;
-
 </script>
 
 <svelte:head>
@@ -16,11 +15,10 @@
 			<Login />
 		{:else}
 			<h1>Welcome to the TerraSync!</h1>
-			
+
 			<!-- Placeholder for user-specific content -->
 		{/if}
 	</main>
-	
 </section>
 
 <style>
@@ -35,5 +33,4 @@
 	h1 {
 		width: 100%;
 	}
-
 </style>

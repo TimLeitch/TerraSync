@@ -11,7 +11,11 @@
 	</main>
 
 	<footer>
-		<p>If there are any issues or concerns, please contact Tim @ <a href="mailto:timothy.leitch@goterrafirma.com">timothy.leitch@goterrafirma.com</a>.</p>
+		<p>
+			If there are any issues or concerns, please contact Tim @ <a
+				href="mailto:timothy.leitch@goterrafirma.com">timothy.leitch@goterrafirma.com</a
+			>.
+		</p>
 	</footer>
 </div>
 
