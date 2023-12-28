@@ -2,24 +2,24 @@
 	import { page } from '$app/stores';
 	import logo from '$lib/images/TF Red Black logo.png';
 	import { isAuthenticated } from '$lib/components/auth/store';
-    import LoginModal from '$lib/components/auth/LoginModal.svelte';
+	import LoginModal from '$lib/components/auth/LoginModal.svelte';
 
-    let showLoginModal = false;
+	let showLoginModal = false;
 
-    function openLoginModal() {
-        showLoginModal = true;
-    }
+	function openLoginModal() {
+		showLoginModal = true;
+	}
 
-    function closeLoginModal() {
-        showLoginModal = false;
-    }
+	function closeLoginModal() {
+		showLoginModal = false;
+	}
 	function handleLogout() {
-        // Clear any stored tokens
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        // Update authentication state
-        isAuthenticated.set(false);
-    }
+		// Clear any stored tokens
+		localStorage.removeItem('accessToken');
+		localStorage.removeItem('refreshToken');
+		// Update authentication state
+		isAuthenticated.set(false);
+	}
 </script>
 
 <header>
@@ -49,10 +49,10 @@
 		</svg>
 	</nav>
 
-	
 	{#if $isAuthenticated}
-	<button>Username (Placeholder)</button> <!-- Link to user profile -->
-	<button on:click={handleLogout}>Logout</button>
+		<button>Username (Placeholder)</button>
+		<!-- Link to user profile -->
+		<button on:click={handleLogout}>Logout</button>
 	{:else}
 		<button on:click={openLoginModal}>Login</button>
 	{/if}

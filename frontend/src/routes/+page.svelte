@@ -1,15 +1,15 @@
-<script>
+<script lang="ts">
 	import { isAuthenticated, userGroups } from '$lib/components/auth/store.js';
 
-	let isLoggedIn;
+	let isLoggedIn: boolean;
 	let groups;
 
 	// Subscribe to the store values
-	isAuthenticated.subscribe(value => {
+	isAuthenticated.subscribe((value) => {
 		isLoggedIn = value;
 	});
 
-	userGroups.subscribe(value => {
+	userGroups.subscribe((value) => {
 		groups = value;
 	});
 </script>
@@ -22,7 +22,7 @@
 <section>
 	<main>
 		{#if !isLoggedIn}
-			<h1>Please log in</h1>	
+			<h1>Please log in</h1>
 		{:else}
 			<h1>Welcome to the TerraSync!</h1>
 
